@@ -1,0 +1,1402 @@
+openapi: 3.0.0
+info:
+  description: "DICOMweb™ is the DICOM standard for web-based medical imaging. It\
+    \ is a set of RESTful services, enabling web developers to unlock the power of\
+    \ healthcare images using industry-standard toolsets."
+  title: DICOMWeb
+  version: 0.1.0
+servers:
+- url: /
+paths:
+  /studies:
+    get:
+      parameters:
+      - description: "Return only {n} results."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Skip {n} results."
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Whether query should use fuzzy matching.
+        explode: true
+        in: query
+        name: fuzzymatching
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Include supplied tags in result.
+        explode: true
+        in: query
+        name: includefield
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/_studies_get_200_response_inner'
+                type: array
+          description: A JSON array of studies.
+      summary: Query for studies.
+  /studies/{StudyInstanceUID}/series:
+    get:
+      parameters:
+      - description: StudyInstanceUID
+        explode: false
+        in: path
+        name: StudyInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Return only {n} results."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Skip {n} results."
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Whether query should use fuzzy matching.
+        explode: true
+        in: query
+        name: fuzzymatching
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Include supplied tags in result.
+        explode: true
+        in: query
+        name: includefield
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/_studies_get_200_response_inner'
+                type: array
+          description: A JSON array of series.
+      summary: Query for series in a study.
+  /studies/{StudyInstanceUID}/series/{SeriesInstanceUID}/instances:
+    get:
+      parameters:
+      - description: StudyInstanceUID
+        explode: false
+        in: path
+        name: StudyInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Return only {n} results."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Skip {n} results."
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Whether query should use fuzzy matching.
+        explode: true
+        in: query
+        name: fuzzymatching
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Include supplied tags in result.
+        explode: true
+        in: query
+        name: includefield
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/_studies__StudyInstanceUID__series__SeriesInstanceUID__instances_get_200_response_inner'
+                type: array
+          description: A JSON array of instances.
+      summary: Query for instances in the series of a study.
+  /series:
+    get:
+      parameters:
+      - description: "Return only {n} results."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Skip {n} results."
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Whether query should use fuzzy matching.
+        explode: true
+        in: query
+        name: fuzzymatching
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Include supplied tags in result.
+        explode: true
+        in: query
+        name: includefield
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/_series_get_200_response_inner'
+                type: array
+          description: A JSON array of series.
+      summary: Query for series.
+  /series/{SeriesInstanceUID}/instances:
+    get:
+      parameters:
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Return only {n} results."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Skip {n} results."
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Whether query should use fuzzy matching.
+        explode: true
+        in: query
+        name: fuzzymatching
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Include supplied tags in result.
+        explode: true
+        in: query
+        name: includefield
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/_studies__StudyInstanceUID__series__SeriesInstanceUID__instances_get_200_response_inner'
+                type: array
+          description: A JSON array of instances.
+      summary: Query for instances in the series of a study.
+  /instances:
+    get:
+      parameters:
+      - description: "Return only {n} results."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "Skip {n} results."
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Whether query should use fuzzy matching.
+        explode: true
+        in: query
+        name: fuzzymatching
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Include supplied tags in result.
+        explode: true
+        in: query
+        name: includefield
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/_studies__StudyInstanceUID__series__SeriesInstanceUID__instances_get_200_response_inner'
+                type: array
+          description: A JSON array of instances.
+      summary: Query for instances.
+  /studies/{StudyInstanceUID}:
+    get:
+      parameters:
+      - description: StudyInstanceUID
+        explode: false
+        in: path
+        name: StudyInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A full study.
+      summary: Retrieve a study.
+  /studies/{StudyInstanceUID}/thumbnail:
+    get:
+      parameters:
+      - description: StudyInstanceUID
+        explode: false
+        in: path
+        name: StudyInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Quality of image (lossy factor)
+        explode: true
+        in: query
+        name: quality
+        required: false
+        schema:
+          format: float
+          type: number
+        style: form
+      - description: "Width and height, or crop to specific region"
+        explode: true
+        in: query
+        name: viewport
+        required: false
+        schema:
+          items:
+            type: integer
+          maxItems: 4
+          minItems: 2
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            image/gif:
+              schema:
+                $ref: '#/components/schemas/imageFormat'
+          description: A representative image of the study.
+      summary: Render a thumbnail.
+  /studies/{StudyInstanceUID}/series/{SeriesInstanceUID}:
+    get:
+      parameters:
+      - description: StudyInstanceUID
+        explode: false
+        in: path
+        name: StudyInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A series.
+      summary: Query for a series in a study.
+  /studies/{StudyInstanceUID}/series/{SeriesInstanceUID}/rendered:
+    get:
+      parameters:
+      - description: StudyInstanceUID
+        explode: false
+        in: path
+        name: StudyInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Add burned-in demographics / procedure details
+        explode: true
+        in: query
+        name: annotation
+        required: false
+        schema:
+          items:
+            enum:
+            - patient
+            - technique
+            type: string
+          type: array
+        style: form
+      - description: Quality of image (lossy factor)
+        explode: true
+        in: query
+        name: quality
+        required: false
+        schema:
+          format: float
+          type: number
+        style: form
+      - description: "Width and height, or crop to specific region"
+        explode: true
+        in: query
+        name: viewport
+        required: false
+        schema:
+          items:
+            type: integer
+          maxItems: 4
+          minItems: 2
+          type: array
+        style: form
+      - description: Center of the range of gray scale in the image
+        explode: true
+        in: query
+        name: window
+        required: false
+        schema:
+          items:
+            type: string
+          maxItems: 3
+          minItems: 3
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            image/gif:
+              schema:
+                $ref: '#/components/schemas/imageFormat'
+          description: The rendered image corresponding to the requested series.
+      summary: Render a series.
+  /studies/{StudyInstanceUID}/series/{SeriesInstanceUID}/thumbnail:
+    get:
+      parameters:
+      - description: StudyInstanceUID
+        explode: false
+        in: path
+        name: StudyInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Quality of image (lossy factor)
+        explode: true
+        in: query
+        name: quality
+        required: false
+        schema:
+          format: float
+          type: number
+        style: form
+      - description: "Width and height, or crop to specific region"
+        explode: true
+        in: query
+        name: viewport
+        required: false
+        schema:
+          items:
+            type: integer
+          maxItems: 4
+          minItems: 2
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            image/gif:
+              schema:
+                $ref: '#/components/schemas/imageFormat'
+          description: A representative image of the series.
+      summary: Render a thumbnail.
+  /studies/{StudyInstanceUID}/series/{SeriesInstanceUID}/instances/{SOPInstanceUID}:
+    get:
+      parameters:
+      - description: StudyInstanceUID
+        explode: false
+        in: path
+        name: StudyInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SOPInstanceUID
+        explode: false
+        in: path
+        name: SOPInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A series.
+      summary: Query for a series in a study.
+  /studies/{StudyInstanceUID}/series/{SeriesInstanceUID}/instances/{SOPInstanceUID}/rendered:
+    get:
+      parameters:
+      - description: StudyInstanceUID
+        explode: false
+        in: path
+        name: StudyInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SOPInstanceUID
+        explode: false
+        in: path
+        name: SOPInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Add burned-in demographics / procedure details
+        explode: true
+        in: query
+        name: annotation
+        required: false
+        schema:
+          items:
+            enum:
+            - patient
+            - technique
+            type: string
+          type: array
+        style: form
+      - description: Quality of image (lossy factor)
+        explode: true
+        in: query
+        name: quality
+        required: false
+        schema:
+          format: float
+          type: number
+        style: form
+      - description: "Width and height, or crop to specific region"
+        explode: true
+        in: query
+        name: viewport
+        required: false
+        schema:
+          items:
+            type: integer
+          maxItems: 4
+          minItems: 2
+          type: array
+        style: form
+      - description: Center of the range of gray scale in the image
+        explode: true
+        in: query
+        name: window
+        required: false
+        schema:
+          items:
+            type: string
+          maxItems: 3
+          minItems: 3
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            image/*:
+              schema:
+                $ref: '#/components/schemas/imageFormat'
+          description: The rendered image corresponding to the requested instance.
+      summary: Render an instance.
+  /studies/{StudyInstanceUID}/series/{SeriesInstanceUID}/instances/{SOPInstanceUID}/thumbnail:
+    get:
+      parameters:
+      - description: StudyInstanceUID
+        explode: false
+        in: path
+        name: StudyInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SOPInstanceUID
+        explode: false
+        in: path
+        name: SOPInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Quality of image (lossy factor)
+        explode: true
+        in: query
+        name: quality
+        required: false
+        schema:
+          format: float
+          type: number
+        style: form
+      - description: "Width and height, or crop to specific region"
+        explode: true
+        in: query
+        name: viewport
+        required: false
+        schema:
+          items:
+            type: integer
+          maxItems: 4
+          minItems: 2
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            image/gif:
+              schema:
+                $ref: '#/components/schemas/imageFormat'
+          description: A representative image of an instance.
+      summary: Render a thumbnail.
+  /studies/{StudyInstanceUID}/series/{SeriesInstanceUID}/instances/{SOPInstanceUID}/frames/{uid}:
+    get:
+      parameters:
+      - description: StudyInstanceUID
+        explode: false
+        in: path
+        name: StudyInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SOPInstanceUID
+        explode: false
+        in: path
+        name: SOPInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Unique Indentifier
+        explode: false
+        in: path
+        name: uid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A series.
+      summary: Query for a series in a study.
+  /series/{SeriesInstanceUID}:
+    get:
+      parameters:
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A full series.
+      summary: Retrieve a series.
+  /series/{SeriesInstanceUID}/rendered:
+    get:
+      parameters:
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Add burned-in demographics / procedure details
+        explode: true
+        in: query
+        name: annotation
+        required: false
+        schema:
+          items:
+            enum:
+            - patient
+            - technique
+            type: string
+          type: array
+        style: form
+      - description: Quality of image (lossy factor)
+        explode: true
+        in: query
+        name: quality
+        required: false
+        schema:
+          format: float
+          type: number
+        style: form
+      - description: "Width and height, or crop to specific region"
+        explode: true
+        in: query
+        name: viewport
+        required: false
+        schema:
+          items:
+            type: integer
+          maxItems: 4
+          minItems: 2
+          type: array
+        style: form
+      - description: Center of the range of gray scale in the image
+        explode: true
+        in: query
+        name: window
+        required: false
+        schema:
+          items:
+            type: string
+          maxItems: 3
+          minItems: 3
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            image/gif:
+              schema:
+                $ref: '#/components/schemas/imageFormat'
+          description: The rendered images corresponding to the requested series.
+      summary: Render an instance.
+  /series/{SeriesInstanceUID}/thumbnail:
+    get:
+      parameters:
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Quality of image (lossy factor)
+        explode: true
+        in: query
+        name: quality
+        required: false
+        schema:
+          format: float
+          type: number
+        style: form
+      - description: "Width and height, or crop to specific region"
+        explode: true
+        in: query
+        name: viewport
+        required: false
+        schema:
+          items:
+            type: integer
+          maxItems: 4
+          minItems: 2
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            image/gif:
+              schema:
+                $ref: '#/components/schemas/imageFormat'
+          description: A representative image of the series.
+      summary: Render a thumbnail.
+  /series/{SeriesInstanceUID}/instances/{SOPInstanceUID}:
+    get:
+      parameters:
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SOPInstanceUID
+        explode: false
+        in: path
+        name: SOPInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A series.
+      summary: Query for a series in a study.
+  /series/{SeriesInstanceUID}/instances/{SOPInstanceUID}/rendered:
+    get:
+      parameters:
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SOPInstanceUID
+        explode: false
+        in: path
+        name: SOPInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Add burned-in demographics / procedure details
+        explode: true
+        in: query
+        name: annotation
+        required: false
+        schema:
+          items:
+            enum:
+            - patient
+            - technique
+            type: string
+          type: array
+        style: form
+      - description: Quality of image (lossy factor)
+        explode: true
+        in: query
+        name: quality
+        required: false
+        schema:
+          format: float
+          type: number
+        style: form
+      - description: "Width and height, or crop to specific region"
+        explode: true
+        in: query
+        name: viewport
+        required: false
+        schema:
+          items:
+            type: integer
+          maxItems: 4
+          minItems: 2
+          type: array
+        style: form
+      - description: Center of the range of gray scale in the image
+        explode: true
+        in: query
+        name: window
+        required: false
+        schema:
+          items:
+            type: string
+          maxItems: 3
+          minItems: 3
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            image/*:
+              schema:
+                $ref: '#/components/schemas/imageFormat'
+          description: The rendered image corresponding to the requested instance.
+      summary: Render an instance.
+  /series/{SeriesInstanceUID}/instances/{SOPInstanceUID}/thumbnail:
+    get:
+      parameters:
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SOPInstanceUID
+        explode: false
+        in: path
+        name: SOPInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Quality of image (lossy factor)
+        explode: true
+        in: query
+        name: quality
+        required: false
+        schema:
+          format: float
+          type: number
+        style: form
+      - description: "Width and height, or crop to specific region"
+        explode: true
+        in: query
+        name: viewport
+        required: false
+        schema:
+          items:
+            type: integer
+          maxItems: 4
+          minItems: 2
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            image/gif:
+              schema:
+                $ref: '#/components/schemas/imageFormat'
+          description: A representative image of an instance.
+      summary: Render a thumbnail.
+  /series/{SeriesInstanceUID}/instances/{SOPInstanceUID}/frames/{uid}:
+    get:
+      parameters:
+      - description: SeriesInstanceUID
+        explode: false
+        in: path
+        name: SeriesInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SOPInstanceUID
+        explode: false
+        in: path
+        name: SOPInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Unique Indentifier
+        explode: false
+        in: path
+        name: uid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A series.
+      summary: Query for a series in a study.
+  /instances/{SOPInstanceUID}:
+    get:
+      parameters:
+      - description: SOPInstanceUID
+        explode: false
+        in: path
+        name: SOPInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A full instance.
+      summary: Retrieve a instance.
+  /instances/{SOPInstanceUID}/{tag}:
+    get:
+      operationId: api.instances.tag
+      parameters:
+      - description: SOPInstanceUID
+        explode: false
+        in: path
+        name: SOPInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A tag's group and element (e.g. 00100010)
+        explode: false
+        in: path
+        name: tag
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: An instance field.
+      summary: Retrieve an instance field.
+  /instances/{SOPInstanceUID}/rendered:
+    get:
+      parameters:
+      - description: SOPInstanceUID
+        explode: false
+        in: path
+        name: SOPInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Add burned-in demographics / procedure details
+        explode: true
+        in: query
+        name: annotation
+        required: false
+        schema:
+          items:
+            enum:
+            - patient
+            - technique
+            type: string
+          type: array
+        style: form
+      - description: Quality of image (lossy factor)
+        explode: true
+        in: query
+        name: quality
+        required: false
+        schema:
+          format: float
+          type: number
+        style: form
+      - description: "Width and height, or crop to specific region"
+        explode: true
+        in: query
+        name: viewport
+        required: false
+        schema:
+          items:
+            type: integer
+          maxItems: 4
+          minItems: 2
+          type: array
+        style: form
+      - description: Center of the range of gray scale in the image
+        explode: true
+        in: query
+        name: window
+        required: false
+        schema:
+          items:
+            type: string
+          maxItems: 3
+          minItems: 3
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            image/*:
+              schema:
+                $ref: '#/components/schemas/imageFormat'
+          description: The rendered image corresponding to the requested instance.
+      summary: Render an instance.
+  /instances/{SOPInstanceUID}/thumbnail:
+    get:
+      parameters:
+      - description: SOPInstanceUID
+        explode: false
+        in: path
+        name: SOPInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Quality of image (lossy factor)
+        explode: true
+        in: query
+        name: quality
+        required: false
+        schema:
+          format: float
+          type: number
+        style: form
+      - description: "Width and height, or crop to specific region"
+        explode: true
+        in: query
+        name: viewport
+        required: false
+        schema:
+          items:
+            type: integer
+          maxItems: 4
+          minItems: 2
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            image/gif:
+              schema:
+                $ref: '#/components/schemas/imageFormat'
+          description: A representative image of an instance.
+      summary: Render a thumbnail.
+  /instances/{SOPInstanceUID}/frames/{uid}:
+    get:
+      parameters:
+      - description: SOPInstanceUID
+        explode: false
+        in: path
+        name: SOPInstanceUID
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Unique Indentifier
+        explode: false
+        in: path
+        name: uid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A series.
+      summary: Query for a series in a study.
+components:
+  parameters:
+    limitParam:
+      description: "Return only {n} results."
+      explode: true
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: number
+      style: form
+    offsetParam:
+      description: "Skip {n} results."
+      explode: true
+      in: query
+      name: offset
+      required: false
+      schema:
+        type: number
+      style: form
+    fuzzymatchingParam:
+      description: Whether query should use fuzzy matching.
+      explode: true
+      in: query
+      name: fuzzymatching
+      required: false
+      schema:
+        type: boolean
+      style: form
+    includefieldParam:
+      description: Include supplied tags in result.
+      explode: true
+      in: query
+      name: includefield
+      required: false
+      schema:
+        type: string
+      style: form
+    uidParameter:
+      description: Unique Indentifier
+      explode: false
+      in: path
+      name: uid
+      required: true
+      schema:
+        type: string
+      style: simple
+    studyInstanceUIDParameter:
+      description: StudyInstanceUID
+      explode: false
+      in: path
+      name: StudyInstanceUID
+      required: true
+      schema:
+        type: string
+      style: simple
+    seriesInstanceUIDParameter:
+      description: SeriesInstanceUID
+      explode: false
+      in: path
+      name: SeriesInstanceUID
+      required: true
+      schema:
+        type: string
+      style: simple
+    sopInstanceUIDParameter:
+      description: SOPInstanceUID
+      explode: false
+      in: path
+      name: SOPInstanceUID
+      required: true
+      schema:
+        type: string
+      style: simple
+    tagParameter:
+      description: A tag's group and element (e.g. 00100010)
+      explode: false
+      in: path
+      name: tag
+      required: true
+      schema:
+        type: string
+      style: simple
+    annotationParameter:
+      description: Add burned-in demographics / procedure details
+      explode: true
+      in: query
+      name: annotation
+      required: false
+      schema:
+        items:
+          enum:
+          - patient
+          - technique
+          type: string
+        type: array
+      style: form
+    qualityParameter:
+      description: Quality of image (lossy factor)
+      explode: true
+      in: query
+      name: quality
+      required: false
+      schema:
+        format: float
+        type: number
+      style: form
+    viewportParameter:
+      description: "Width and height, or crop to specific region"
+      explode: true
+      in: query
+      name: viewport
+      required: false
+      schema:
+        items:
+          type: integer
+        maxItems: 4
+        minItems: 2
+        type: array
+      style: form
+    windowParameter:
+      description: Center of the range of gray scale in the image
+      explode: true
+      in: query
+      name: window
+      required: false
+      schema:
+        items:
+          type: string
+        maxItems: 3
+        minItems: 3
+        type: array
+      style: form
+  schemas:
+    imageFormat:
+      format: binary
+      type: string
+    _studies_get_200_response_inner:
+      example:
+        date: 2014-03-12T13:37:27+00:00
+        study: Abdomen CT
+        link: /studies/1.2.3.4.5
+      properties:
+        study:
+          example: Abdomen CT
+          nullable: true
+          type: string
+        date:
+          example: 2014-03-12T13:37:27+00:00
+          nullable: true
+          type: string
+        link:
+          example: /studies/1.2.3.4.5
+          type: string
+      type: object
+    _studies__StudyInstanceUID__series__SeriesInstanceUID__instances_get_200_response_inner:
+      example:
+        link: /instances/1.2.3.4.5
+      properties:
+        link:
+          example: /instances/1.2.3.4.5
+          type: string
+      type: object
+    _series_get_200_response_inner:
+      example:
+        SeriesDate: 2014-03-12T13:37:27+00:00
+        link: /series/1.2.3.4.5
+        SeriesDescription: Abdomen CT
+      properties:
+        SeriesDescription:
+          example: Abdomen CT
+          nullable: true
+          type: string
+        SeriesDate:
+          example: 2014-03-12T13:37:27+00:00
+          nullable: true
+          type: string
+        link:
+          example: /series/1.2.3.4.5
+          type: string
+      type: object
+
